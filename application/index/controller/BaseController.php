@@ -7,7 +7,7 @@ class BaseController extends Controller
 {
     public function __construct()
     {
-        parent::__construce();
+        parent::__construct();
     }
 
     /**

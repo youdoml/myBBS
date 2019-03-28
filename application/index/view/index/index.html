@@ -18,65 +18,54 @@
             <hr>
             <div class="show-box">
                 <div class="liuyan-rows">
+                {volist name="data", id="row"}
                     <div class="liuyan-row">
                         <div class="liuyan-head">
-                            <a><img src="__UPLOAD__images/picture.png" alt="">chen</a>
+                            <a><img src="__UPLOAD__images/{empty name='$row.users.image'}picture.png{else /}{$row.users.image}{/empty}" alt="">{$row.users.username}</a>
                         </div>
                         <div class="liuyan-content">
-                            <p>这游戏的游戏体验太棒了，从画质、人物形象与行为和游戏事件触发都会无可挑剔的</p>
+                            <p>{$row.content}</p>
                         </div>
                         <div class="liuyan-footer clear">
                             <ul>
-                                <li><span class="date">1楼</span></li>
-                                <li><span class="great">赞(12)</span></li>
-                                <li><span class="date">2018-09-11</span></li>
+                                <li><span class="date">{$row.wid}楼</span></li>
+                                <li><span class="great">赞({$row.star})</span></li>
+                                <li><span class="date">{$row.create_time}</span></li>
                                 <li><span class="reply comment-box-button">回复</span></li>
                                 <a class="word-info" data="uid:123&wid:123&touname:chen"></a>
                             </ul>
                         </div>
                         <div class="comment-box">
+                        {volist name="row['comments']" id="comment"}
                             <div class="comment-row clear">
-                                <img src="__UPLOAD__images/picture.png" alt="">
+                                <img src="__UPLOAD__images/{empty name='$row.users.image'}picture.png{else /}{$row.users.image}{/empty}" alt="">
                                 <div class="comment">
-                                    <p><a class="user">zhou:</a>
-                                        你真是奇葩？？你真是奇葩？？你真是奇葩？？你真是奇葩？？你真是奇葩？？你真是奇葩？？你真是奇葩？？你真是奇葩？？你真是奇葩？？你真是奇葩？？你真是奇葩？？你真是奇葩？？
+                                    <p><a class="user">{$comment.username}</a>{notempty name="$comment.to_username"}回复<a class="user">{$comment.to_username}</a>{/notempty}:
+                                        {$comment.content}
                                     </p>
                                     <div class="comment-footer clear">
                                         <ul>
-                                            <li><span class="date">2018-09-11</span></li>
-                                            <li><span class="great">赞(12)</span></li>
+                                            <li><span class="date">{$comment.create_time}</span></li>
+                                            <li><span class="great">赞({$comment.star})</span></li>
                                             <li><span class="reply">回复</span></li>
                                         </ul>
-                                        
+
                                     </div>
 
                                 </div>
                             </div>
-                            <div class="comment-row clear">
-                                <img src="__UPLOAD__images/picture.png" alt="">
-                                <div class="comment">
-                                    <p><a class="user">zhou:</a>回复<a class="user">chen:</a>
-                                        你真是奇葩？？你真是奇葩？？你真是奇葩？？你真是奇葩？？你真是奇葩？？你真是奇葩？？你真是奇葩？？你真是奇葩？？你真是奇葩？？你真是奇葩？？你真是奇葩？？你真是奇葩？？
-                                    </p>
-                                    <div class="comment-footer clear">
-                                        <ul>
-                                            <li><span class="great">赞(12)</span></li>
-                                            <li><span class="date">2018-09-11</span></li>
-                                            <li><span class="reply"  onclick="">回复</a></li>
-                                        </ul>
+                        {/volist}
+                            <div class="comment-reply">
+                                <form action="" class="clear" method="post">
+                                    <textarea name="" id=""></textarea>
+                                    <div class="comment-submit">
+                                        <input type="submit" value="回复">
                                     </div>
-                                </div>
-                                <div class="comment-reply">
-                                    <form action="" method="post">
-                                        <textarea name="" id=""></textarea>
-                                        <div class="comment-submit">
-                                            <input type="submit" value="回复">
-                                        </div>
-                                    </form>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
+                {/volist}
                     <div class="liuyan-row">
                         <div class="liuyan-head">
                             <a><img src="__UPLOAD__images/picture.png" alt="">chen</a>
