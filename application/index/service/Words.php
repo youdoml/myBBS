@@ -40,7 +40,7 @@ class Words
             foreach($v['comments'] as $key => $value) {
                 
                 $comments[$key]['cid'] = $value['cid'];
-                // $comments[$key]['uid'] = $value['uid'];
+                $comments[$key]['uid'] = $value['uid'];
                 $comments[$key]['username'] = $value['users']['username'];
                 $comments[$key]['image'] = $value['users']['image'];
                 $comments[$key]['content'] = $value['content'];

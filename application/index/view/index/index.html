@@ -21,7 +21,7 @@
                 {volist name="data", id="row"}
                     <div class="liuyan-row">
                         <div class="liuyan-head">
-                            <a><img src="__UPLOAD__images/{empty name='$row.users.image'}picture.png{else /}{$row.users.image}{/empty}" alt="">{$row.users.username}</a>
+                            <a><img src="__UPLOAD__images/{empty name='$row.users.image'}default.jfif{else /}{$row.users.image}{/empty}" alt="">{$row.users.username}</a>
                         </div>
                         <div class="liuyan-content">
                             <p>{$row.content}</p>
@@ -31,14 +31,13 @@
                                 <li><span class="date">{$row.wid}楼</span></li>
                                 <li><span class="great">赞({$row.star})</span></li>
                                 <li><span class="date">{$row.create_time}</span></li>
-                                <li><span class="reply comment-box-button">回复</span></li>
-                                <a class="word-info" data="uid:123&wid:123&touname:chen"></a>
+                                <li><span class="reply comment-box-button" count="13">评论</span></li>
                             </ul>
                         </div>
                         <div class="comment-box">
                         {volist name="row['comments']" id="comment"}
                             <div class="comment-row clear">
-                                <img src="__UPLOAD__images/{empty name='$row.users.image'}picture.png{else /}{$row.users.image}{/empty}" alt="">
+                                <img src="__UPLOAD__images/{empty name='$row.users.image'}default.jfif{else /}{$row.users.image}{/empty}" alt="">
                                 <div class="comment">
                                     <p><a class="user">{$comment.username}</a>{notempty name="$comment.to_username"}回复<a class="user">{$comment.to_username}</a>{/notempty}:
                                         {$comment.content}
@@ -47,7 +46,7 @@
                                         <ul>
                                             <li><span class="date">{$comment.create_time}</span></li>
                                             <li><span class="great">赞({$comment.star})</span></li>
-                                            <li><span class="reply">回复</span></li>
+                                            <li><span class="reply reply-comment" data="{$comment.uid}&{$comment.cid}&{$comment.username}">回复</span></li>
                                         </ul>
                                     </div>
 
@@ -56,8 +55,10 @@
                         {/volist}
                             <div class="comment-reply">
                                 <form action="" class="clear" method="post">
-                                    <textarea name="" id=""></textarea>
+                                    <textarea name="content" value=""></textarea>
+                                    <input type="hidden" name="wid" value="{$row.wid}">    
                                     <div class="comment-submit">
+                                        <input type="button" class="comment-reply-cancel" value="取消">
                                         <input type="submit" value="回复">
                                     </div>
                                 </form>
@@ -86,5 +87,10 @@
     </div>
     <!-- //content -->
 </body>
+<script>
+    $(function(){
+        
+    })
+</script>
 <script src="__JS__main.js"></script>
 </html>
