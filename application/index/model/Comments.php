@@ -24,4 +24,6 @@ class Comments extends BaseModel
         return $this->belongsTo('Words', 'wid');
     }
 
+    
+
 }

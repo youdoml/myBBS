@@ -27,4 +27,12 @@ class Words extends BaseModel
     {
         return $this->belongsTo('Users', 'uid');
     }
+    /**
+     * @param int wid
+     * @return mixed
+     */
+    public static function getWordByWid($wid)
+    {
+        return Words::get(['wid' => $wid]);
+    }
 }

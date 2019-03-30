@@ -39,9 +39,7 @@
                             <div class="comment-row clear">
                                 <img src="__UPLOAD__images/{empty name='$row.users.image'}default.jfif{else /}{$row.users.image}{/empty}" alt="">
                                 <div class="comment">
-                                    <p><a class="user">{$comment.username}</a>{notempty name="$comment.to_username"}回复<a class="user">{$comment.to_username}</a>{/notempty}:
-                                        {$comment.content}
-                                    </p>
+                                    <p><span class="user">{$comment.username}</span>{notempty name="$comment.to_username"}回复<span class="user">{$comment.to_username}</span>{/notempty}:{$comment.content}</p>
                                     <div class="comment-footer clear">
                                         <ul>
                                             <li><span class="date">{$comment.create_time}</span></li>
@@ -59,7 +57,7 @@
                                     <input type="hidden" name="wid" value="{$row.wid}">    
                                     <div class="comment-submit">
                                         <input type="button" class="comment-reply-cancel" value="取消">
-                                        <input type="submit" value="回复">
+                                        <input type="button" class="comment-reply-submit" value="回复">
                                     </div>
                                 </form>
                             </div>
@@ -72,9 +70,9 @@
                 <div class="title">
                     <h3>发表留言</h3>
                 </div>
-                <form action="__PUBLIC__" method="post" class=" clear">
+                <form action="__PUBLIC__" method="post"  class="word     clear">
                     <div class="edit">
-                        <textarea name="" id=""></textarea>
+                        <textarea name="content" id=""></textarea>
                     </div>
                     <div class="submit">
                         <input type="button" id="lSend" value="发表">
@@ -87,10 +85,6 @@
     </div>
     <!-- //content -->
 </body>
-<script>
-    $(function(){
-        
-    })
-</script>
 <script src="__JS__main.js"></script>
+<script src="__JS__http.js"></script>
 </html>
