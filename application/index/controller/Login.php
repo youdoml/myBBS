@@ -19,37 +19,39 @@ use app\index\validate\Loginon;
 
 class Login extends BaseController
 {
+    
     /**
-     * 登录
-     *
+     * 登录逻辑
+     * @param Request $request
      */
     public function on(Request $request)
     {
         $session = new Session;
         if ($session->has('userinfo')) {
             // TODO: 已登录处理
+            $data = array('location' => url('index/index/index'));
+            return \returnJsonApi('已经登录', 'error', 200, $data, 66401);
         }
 
         $vResult = (new Loginon)->docheck();
         if($vResult !== true) {
             // TODO: 提交数据错误
-            return;
+            
+            return \returnJsonApi($vResult,'error', 200, [], 66402);
         }
 
-        $data = $request->param();
+        $pData = $request->param();
         // TODO:验证码
 
         // 验证用户密码
-        $username = $data['username'];
-        $password = AuthUser::encodePSW($username, $data['password']);
+        $username = $pData['username'];
+        $password = AuthUser::encodePSW($username, $pData['password']);
         $qResult = Users::where(['username' => $username, 'password' => $password])->field('uid,email, image')->find();
 
+        
+
         if(!$qResult) {
-            $return['msg'] = '账号或密码错误';
-            $return['status'] = 'error';
-            return $this->success('登录成功',url("index/index/index"));
-            // $return['statusCode'] = 
-            return json($return)->code(400);
+            return \returnJsonApi('账号或密码错误', 'error', 200, [], 66404);
         }
 
         //用户的信息
@@ -65,12 +67,10 @@ class Login extends BaseController
         $session->set('userinfo.image', $image);
 
         // 前端进行跳转逻辑
-        $return['url'] = url('index/index/index');
-        $return['status'] = 'success';
-        // $return['statusCode'] = 
-        $return['msg'] = '登录成功';
+        $data['location'] = url('index/index/index');
+    
         
-        return json($return)->code(200);
+        return \returnJsonApi('登录成功', 'success', 200, $data, 66200);
 
     }
     /**

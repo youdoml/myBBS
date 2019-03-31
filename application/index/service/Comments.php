@@ -17,18 +17,20 @@ class Comments
         $cmtList = self::cidToIndex($cmtList);
 
         $data = [];
-        foreach($cmtList as $key => $value) {
-            $data[$key]['cid'] = $value['cid'];
-            $data[$key]['uid'] = $value['uid'];
-            $data[$key]['username'] = $value['users']['username'];
-            $data[$key]['image'] = $value['users']['image'];
-            $data[$key]['content'] = $value['content'];
-            $data[$key]['create_time'] = $value['create_time'];
-            $data[$key]['star'] = $value['star'];
+        $item = [];
+        foreach($cmtList as $value) {
+            $item['cid'] = $value['cid'];
+            $item['uid'] = $value['uid'];
+            $item['username'] = $value['users']['username'];
+            $item['image'] = $value['users']['image'];
+            $item['content'] = $value['content'];
+            $item['create_time'] = $value['create_time'];
+            $item['star'] = $value['star'];
             if(isset($value['to_cid'])) {
                 $to_cid = $value['to_cid'];
-                $data[$key]['to_username'] = $cmtList[$to_cid]['users']['username'];
+                $item['to_username'] = $cmtList[$to_cid]['users']['username'];
             }
+            $data[] = $item;
         }
         // dump($data);exit;
         return $data;

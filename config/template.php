@@ -34,11 +34,11 @@ return [
     'taglib_end'   => '}',
     // 替换
     'tpl_replace_string' => [
-        '__PUBLIC__' =>  Request::root(),
-        '__STATIC__' => Request::root(). '/static/',
-        '__IMAGES__' => Request::root(). '/static/images/',
-        '__JS__' => Request::root(). '/static/js/',
-        '__CSS__' => Request::root(). '/static/css/',
-        '__UPLOAD__' => Request::root(). '/upload/',
+        '__PUBLIC__' =>  str_replace('/index.php', '',Request::root(true)),
+        '__STATIC__' => str_replace('/index.php', '',Request::root(true)) . '/static/',
+        '__IMAGES__' => str_replace('/index.php', '',Request::root(true)) . '/static/images/',
+        '__JS__' => str_replace('/index.php', '',Request::root(true)) . '/static/js/',
+        '__CSS__' => str_replace('/index.php', '',Request::root(true)) . '/static/css/',
+        '__UPLOAD__' => str_replace('/index.php', '',Request::root(true)) . '/upload/',
     ]
 ];

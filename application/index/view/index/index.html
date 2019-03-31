@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="__CSS__style.css">
+    <link rel="stylesheet" href="__CSS__commen-style.css">
+    <link rel="stylesheet" href="__CSS__main-style.css">
     <title>留言</title>
-    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="__JS__jquery.min.js"></script>
 </head>
 <body>
     <div class="wrapper">
         <div class="container">
             <div class="top clear">
                 <div class="title"><h2>留言板</h2></div>
-                <div class="right"><a href="#word" rel="noopener noreferrer">发表留言</a><img src="__UPLOAD__images/picture.png" alt=""></div>
+                <div class="right"><a href="#word" rel="noopener noreferrer">发表留言</a><img src="__UPLOAD__images/{present name='userinfo'}{$userinfo.image}" title="{$userinfo.username}" {else /}default.jfif" title="请登录"{/present}></div>
             </div>
             <hr>
             <div class="show-box">
