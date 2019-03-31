@@ -10,3 +10,17 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
+/**
+ * @param string status
+ */
+function returnJsonApi($msg = "success", $status = "success", $code=200, $data=[],$statusCode='')
+{
+    $return = [];
+    $return['status'] = $status;
+    $return['msg'] = $msg;
+
+    $data and $return['data'] = $data;
+    $statusCode and $return['statusCode'] = $statusCode;
+    
+    return json($return, $code);
+}

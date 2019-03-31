@@ -1,6 +1,13 @@
 <?php
 /**
  * 用户登录
+ * code [
+ *  66201 登录成功
+ *  66401 已经登录
+ *  66402 参数错误
+ *  66403 
+ *  66404 用户密码错误
+ * ]
  */
 namespace app\index\controller;
 
@@ -22,8 +29,6 @@ class Login extends BaseController
         if ($session->has('userinfo')) {
             // TODO: 已登录处理
         }
-        // 返回数据
-        $return = array();
 
         $vResult = (new Loginon)->docheck();
         if($vResult !== true) {
