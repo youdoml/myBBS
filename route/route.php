@@ -32,3 +32,7 @@ Route::get('user/exit', 'index/login/off')->middleware('Auth');
 Route::rule('sign/in', 'index/login/on');
 Route::rule('sign/up', 'index/register/sign');
 
+// 点赞接口
+Route::rule('star/word/:wid', 'index/words/star')->pattern(['wid' => '\d+'])->middleware('Auth');
+Route::rule('star/comment/:cid', 'index/comments/star')->pattern(['cid' => '\d+'])->middleware('Auth');
+

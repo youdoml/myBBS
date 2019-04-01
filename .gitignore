@@ -5,3 +5,6 @@
 thinkphp
 .env
 .DS_Store
+/runtime
+README.md.tp5.1
+.gitignore

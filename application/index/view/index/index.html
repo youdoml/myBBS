@@ -14,7 +14,7 @@
         <div class="container">
             <div class="top clear">
                 <div class="title"><h2>留言板</h2></div>
-                <div class="right"><a href="#word" rel="noopener noreferrer">发表留言</a><img id="head" url="{present name='userinfo'}{:url('index/login/off')}{else /}{:url('index/index/sign')}{/present}" src="__UPLOAD__images/{present name='userinfo'}{$userinfo.image}" title="{$userinfo.username}--点击退出" {else /}default.jfif" title="点击登录"{/present}></div>
+                <div class="right"><a href="#word" rel="noopener noreferrer">发表留言</a><img id="head"  url="{present name='userinfo'}{:url('index/login/off')}{else /}{:url('index/index/sign')}{/present}" {present name="userinfo"}login="1"{/present} src="__UPLOAD__images/{present name='userinfo'}{$userinfo.image}" title="{$userinfo.username}--点击退出" {else /}default.jfif" title="点击登录"{/present}></div>
             </div>
             <hr>
             <div class="show-box">
@@ -30,7 +30,7 @@
                         <div class="liuyan-footer clear">
                             <ul>
                                 <li><span class="date">{$row.wid}楼</span></li>
-                                <li><span class="great">赞({$row.star})</span></li>
+                                <li><span class="great" url="{:url('star/word/'.$row.wid)}">赞({$row.star})</span></li>
                                 <li><span class="date">{$row.create_time}</span></li>
                                 <li><span class="reply comment-box-button" count="13">评论</span></li>
                             </ul>
@@ -43,8 +43,8 @@
                                     <p><span class="user">{$comment.username}</span>{notempty name="$comment.to_username"}回复<span class="user">{$comment.to_username}</span>{/notempty}:{$comment.content}</p>
                                     <div class="comment-footer clear">
                                         <ul>
+                                            <li><span class="great" url="{:url('star/comment/' . $comment.cid)}"">赞({$comment.star})</span></li>
                                             <li><span class="date">{$comment.create_time}</span></li>
-                                            <li><span class="great">赞({$comment.star})</span></li>
                                             <li><span class="reply reply-comment" data="{$comment.uid}&{$comment.cid}&{$comment.username}">回复</span></li>
                                         </ul>
                                     </div>
@@ -88,4 +88,5 @@
 </body>
 <script src="__JS__main.js"></script>
 <script src="__JS__http.js"></script>
+<script src="__JS__star.js"></script>
 </html>

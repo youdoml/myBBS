@@ -17,8 +17,8 @@ class CommentStar extends BaseModel
      * @param uid
      * @return mixed
      */
-    public static function getStarById($cid, $uid)
+    public static function getStarById($uid, $cid)
     {
-        return CommentStar::where(['cid' => $cid, 'uid' => $uid]);
+        return CommentStar::get(['cid' => $cid, 'uid' => $uid]);
     }
 }
