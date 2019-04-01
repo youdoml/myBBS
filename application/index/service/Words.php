@@ -20,17 +20,17 @@ class Words
         }])->hidden(['delete_time'])->limit(10)->order('wid', 'desc')->all()->toArray();
 
         // dump($data);exit;->order('wid', 'desc')
-        if(!$data) {
-            return false;
+        if($data) {
+            foreach($data as $k => $v) {
+                // 整合评论数据
+                $comments = Comments::dealCmtList($v['comments']);
+                $data[$k]['comments'] = $comments;
+            };
         }
         
         // dump($data);exit;
         // 整合信息
-        foreach($data as $k => $v) {
-            // 整合评论数据
-            $comments = Comments::dealCmtList($v['comments']);
-            $data[$k]['comments'] = $comments;
-        }
+        
         // dump($data[1]);exit;
         return $data;
     }

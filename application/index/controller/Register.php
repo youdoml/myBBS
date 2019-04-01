@@ -4,10 +4,11 @@
  */
 namespace app\index\controller;
 
+use think\Request;
 use app\index\model\Users;
 use app\index\service\AuthUser;
 use app\index\validate\SignInfo;
-use think\Request;
+use app\index\service\RandomPicture;
 
 class Register extends BaseController
 {
@@ -45,9 +46,9 @@ class Register extends BaseController
 
         // 注册信息入库
         $data['password'] = AuthUser::encodePSW($username, $data['password']);
-
+        $data['image'] = RandomPicture::picture();
         $users = new Users;
-        $qResult = $users->allowField(['username', 'password', 'email'])->save($data);
+        $qResult = $users->allowField(['username', 'password', 'email', 'image'])->save($data);
 
         if (!$qResult) {
             return \returnJsonApi('系统繁忙', 'error', 200, [], 77403);

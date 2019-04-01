@@ -7,7 +7,7 @@ namespace app\index\model;
 class WordStar extends BaseModel
 {
     protected $pk = 'id';
-    protected $autoWriteTimeStamp = true;
+    protected $autoWriteTimestamp = true;
     protected $updateTime = false;
 
     /**

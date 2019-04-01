@@ -19,6 +19,7 @@
             <hr>
             <div class="show-box">
                 <div class="liuyan-rows">
+                {present name='data'}
                 {volist name="data", id="row"}
                     <div class="liuyan-row">
                         <div class="liuyan-head">
@@ -65,6 +66,7 @@
                         </div>
                     </div>
                 {/volist}
+                {/present}
                 </div>
             </div>
             <div id="word" class="release-box">
