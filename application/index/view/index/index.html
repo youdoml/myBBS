@@ -14,7 +14,7 @@
         <div class="container">
             <div class="top clear">
                 <div class="title"><h2>留言板</h2></div>
-                <div class="right"><a href="#word" rel="noopener noreferrer">发表留言</a><img src="__UPLOAD__images/{present name='userinfo'}{$userinfo.image}" title="{$userinfo.username}" {else /}default.jfif" title="请登录"{/present}></div>
+                <div class="right"><a href="#word" rel="noopener noreferrer">发表留言</a><img id="head" url="{present name='userinfo'}{:url('index/login/off')}{else /}{:url('index/index/sign')}{/present}" src="__UPLOAD__images/{present name='userinfo'}{$userinfo.image}" title="{$userinfo.username}--点击退出" {else /}default.jfif" title="点击登录"{/present}></div>
             </div>
             <hr>
             <div class="show-box">
@@ -53,7 +53,7 @@
                             </div>
                         {/volist}
                             <div class="comment-reply">
-                                <form action="" class="clear" method="post">
+                                <form action="{:url('index/comments/post')}" class="clear" method="post" refresh="{:url('index/comments/list', 'wid=' . $row.wid)}">
                                     <textarea name="content" value=""></textarea>
                                     <input type="hidden" name="wid" value="{$row.wid}">    
                                     <div class="comment-submit">
@@ -71,7 +71,7 @@
                 <div class="title">
                     <h3>发表留言</h3>
                 </div>
-                <form action="__PUBLIC__" method="post"  class="word     clear">
+                <form action="{:url('index/words/post')}" method="post"  class="word     clear">
                     <div class="edit">
                         <textarea name="content" id=""></textarea>
                     </div>

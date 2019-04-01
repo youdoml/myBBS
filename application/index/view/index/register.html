@@ -13,29 +13,31 @@
         <div class="sign-box">
             <div class="sign-title"><h2>用户注册</h2></div>
             <div class="sign-content">
-                <form action="" method="post">
+                <form action="{:url('index/register/sign')}" method="post" entyle="application/x-www-form-urlencode">
                     <div class="sign-content-row">
-                        <label for="username">用户名</label><input type="text" name="username">
+                        <label for="username">用户名</label><input type="text" name="username" require>
                     </div>
                     <div class="sign-content-row">
-                        <label for="email">邮箱</label><input type="text" name="username">
+                        <label for="email">邮箱</label><input type="email" name="email" require>
                     </div>
                     <div class="sign-content-row">
-                        <label for="password">密码</label><input type="text" name="username">
+                        <label for="password">密码</label><input type="password" name="password" require>
                     </div>
                     <div class="sign-content-row">
-                        <label for="confirm">确定密码</label><input type="password" name="comfirm">
+                        <label for="confirm">确定密码</label><input type="password" name="confirm" require>
                     </div>
                 </form>
-                <div class="warn">密码错误</div>
+                <div class="warn"></div>
                 <div class="button">
-                    <button id="login">注册</button>
+                    <button id="register">注册</button>
                 </div>
                 <div class="sign-footer clear">
-                    <a href="">已注册</a>
+                    <a href="{:url('index/index/sign')}">已注册</a>
                 </div>
             </div>
         </div>
     </div>
+    <script src="__JS__jquery.min.js"></script>
+    <script src="__JS__register.js"></script>
 </body>
 </html>

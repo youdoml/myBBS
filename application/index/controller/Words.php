@@ -35,13 +35,11 @@ class Words extends BaseController
      */
     public function post(Request $request)
     {
-        $return = array();
+       
         $vResult = (new PostWordParameter)->docheck();
         
         if (true !== $vResult) {
-            $return['status'] = 'error';
-            $return['msg'] = $vResult;
-            return json($return)->code(400);
+            return \returnJsonApi($vResult, 'error', 200, [], 44401);
         }
 
         $session = new Session;
@@ -53,16 +51,10 @@ class Words extends BaseController
         $qResult = $model->save(['uid' => $uid, 'content' => $content]);
 
         if(!$qResult) {
-            $return['msg'] = '系统繁忙';
-            $return['status'] = 'error';
-
-            return json($return)->json(400);
+            return \returnJsonApi('系统繁忙', 'error', 200, [], 44402);
+            
         } 
-
-        $return['msg'] = '发表成功';
-        $return['status'] = 'success';
-        
-        return json($return);
+        return \returnJsonApi('发表成功', 'success', 200, [], 44200);
 
     }
 }

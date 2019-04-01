@@ -20,15 +20,15 @@ Route::get('home', 'index/index/index');
 // word接口
 Route::get('list/:page', 'index/Words/list')->pattern(['page' => '\d+']);
 Route::get('word/:wid$', 'index/Words/one')->pattern(['wid' => '\d+']);
-Route::rule('post/word', 'index/words/post', 'GET|POST');
+Route::rule('post/word', 'index/words/post', 'GET|POST')->middleware('Auth');
 // 评论接口路由
 Route::get('comments/:wid', 'index/comments/list')->pattern(['wid' => '\d+']);
-Route::rule('post/comment', 'index/comments/post', 'GET|POST');
+Route::rule('post/comment', 'index/comments/post', 'GET|POST')->middleware('Auth');
 
 Route::get('login', 'index/index/sign');
 Route::get('register', 'index/index/register');
 
-Route::get('sign/exit', 'index/login/off');
+Route::get('user/exit', 'index/login/off')->middleware('Auth');
 Route::rule('sign/in', 'index/login/on');
 Route::rule('sign/up', 'index/register/sign');
 

@@ -20,32 +20,27 @@ class Register extends BaseController
     }
     /**
      * 注册用户
+     * 77200 chneg
+     * 77401 yizhuce
+     * 77402 验证错误
+     * 77403 系统繁忙
      */
     public function sign(Request $request)
     {
-        // 返回数据
-        $return = array();
 
         $vResult = (new SignInfo)->docheck();
         if (true !== $vResult) {
-            // TODO: 验证错误处理
-            return json($vResult);
+            return \returnJsonApi($vResult, 'error', 200, [], 77402);
         }
 
         $data = $request->param();
         $username = $data['username'];
         if (Users::getUserByUsername($username)) {
-            $return['status'] = 'error';
-            $return['msg'] = '用户名已被注册';
-            // $return['statusCode'] =
-            return json($return)->code(400);
+            return \returnJsonApi('用户名被注册','error', 200, [], 77401);
         }
 
         if ($data['password'] !== $data['confirm']) {
-            $return['status'] = 'error';
-            $return['msg'] = '两次输入的密码不一致';
-            // $return['statusCode'] =
-            return json($return)->code(400);
+            return \returnJsonApi('两次密码输入不一致', 'error', 200, [], 77402);
         }
 
         // 注册信息入库
@@ -55,11 +50,10 @@ class Register extends BaseController
         $qResult = $users->allowField(['username', 'password', 'email'])->save($data);
 
         if (!$qResult) {
-            $return['status'] = 'success';
-            $reutrn['msg'] = '注册成功';
-            // $return['statusCode'] =
-            return json($return)->code(200);
+            return \returnJsonApi('系统繁忙', 'error', 200, [], 77403);
         }
+
+        return \returnJsonApi('注册成功', 'success', 200, ['url' => url('index/index/index')], 77200);
 
     }
     /**

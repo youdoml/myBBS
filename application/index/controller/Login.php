@@ -86,6 +86,11 @@ class Login extends BaseController
      */
     public function off()
     {
-        return json((new Session)->pull('userinfo'));
+        $dResult = (new Session)->pull('userinfo');
+        // if($dResult){
+        //     return \returnJsonApi('安全退出', 'success', 200, ['url' => url('index\index\index')]);
+        // }
+        // return \returnJsonApi('退出失败', 'error', 200);
+        return $this->success('安全退出','index/index/index');
     }
 }

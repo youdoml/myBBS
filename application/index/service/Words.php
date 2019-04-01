@@ -17,7 +17,7 @@ class Words
             $query->with(['users' => function($query){
                 $query->field('username, uid, image, create_time');
             }])->hidden(['delete_time']);
-        }])->hidden(['delete_time'])->limit(10)->all()->toArray();
+        }])->hidden(['delete_time'])->limit(10)->order('wid', 'desc')->all()->toArray();
 
         // dump($data);exit;->order('wid', 'desc')
         if(!$data) {

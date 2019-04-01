@@ -13,7 +13,7 @@
         <div class="sign-box">
             <div class="sign-title"><h2>用户登录</h2></div>
             <div class="sign-content">
-                <form action="" method="post">
+                <form action="{:url('index/login/on')}" method="post" entype="application/x-www-form-urlencode">
                     <div class="sign-content-row">
                         <label for="username">用户名</label><input type="text" name="username">
                     </div>
@@ -26,7 +26,7 @@
                     <button id="login">登录</button>
                 </div>
                 <div class="sign-footer clear">
-                    <a href="">还没注册</a>
+                    <a href="{:url('index/index/register')}">还没注册</a>
                 </div>
             </div>
         </div>
