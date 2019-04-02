@@ -6,15 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="__CSS__commen-style.css">
     <link rel="stylesheet" href="__CSS__main-style.css">
-    <title>留言</title>
+    <title>MyBBS</title>
     <script src="__JS__jquery.min.js"></script>
 </head>
-<body>
+<body>  
     <div class="wrapper">
         <div class="container">
             <div class="top clear">
                 <div class="title"><h2>留言板</h2></div>
-                <div class="right"><a href="#word" rel="noopener noreferrer">发表留言</a><img id="head"  url="{present name='userinfo'}{:url('index/login/off')}{else /}{:url('index/index/sign')}{/present}" {present name="userinfo"}login="1"{/present} src="__UPLOAD__images/{present name='userinfo'}{$userinfo.image}" title="{$userinfo.username}--点击退出" {else /}default.jfif" title="点击登录"{/present}></div>
+                <div class="right"><a href="#word" rel="noopener noreferrer">发表留言</a>
+                <div class="img">
+                    <img id="head" src="__UPLOAD__images/{present name='userinfo'}{$userinfo.image}" title="{$userinfo.username}--点击退出" {else /}default.jfif" title="点击登录"{/present}>
+                </div>
+            </div>
+                <div class="info"><ul>
+                    {present name="userinfo"}
+                    <li><a href="">个人中心</a></li>
+                    <li><a href="{:url('index/login/off')}">退出登录</a></li>
+                    {else /}
+                    <li><a href="{:url('index/index/sign')}">登录</a></li>
+                    <li><a href="{:url('index/index/register')}">注册</a></li>
+                    {/present}
+                </ul></div>
             </div>
             <hr>
             <div class="show-box">
@@ -56,7 +69,7 @@
                             <div class="comment-reply">
                                 <form action="{:url('index/comments/post')}" class="clear" method="post" refresh="{:url('index/comments/list', 'wid=' . $row.wid)}">
                                     <textarea name="content" value=""></textarea>
-                                    <input type="hidden" name="wid" value="{$row.wid}">    
+                                    <input type="hidden" name="wid" value="{$row.wid}">
                                     <div class="comment-submit">
                                         <input type="button" class="comment-reply-cancel" value="取消">
                                         <input type="button" class="comment-reply-submit" value="回复">
